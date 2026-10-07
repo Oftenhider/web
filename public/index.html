@@ -8,6 +8,7 @@
     <meta property="og:title" content="oftenhider" />
     <meta property="og:description" content="i'm a person from poland" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oftenhider.eu/" />
     <meta name="twitter:card" content="summary" />
     <link rel="icon" type="image/svg" href="favicon.svg">
     <title>oftenhider</title>
@@ -19,7 +20,7 @@
           "components": [
             {
               "type": 10,
-              "content": "# oftenhider.\i'm a person from poland"
+              "content": "# oftenhider.\ni'm a person from poland"
             },
             {
               "type": 1,
@@ -39,10 +40,10 @@
     <main>
       <section class="content" aria-labelledby="name">
         <h1 id="name">oftenhider</h1>
-        <section class="live-panel" aria-label="current weather and time in czÄ™stochowa">
+        <section class="live-panel" aria-label="current weather and time in częstochowa">
           <div class="weather-readout" aria-live="polite">
-            <span class="weather-icon" id="weather-icon" aria-hidden="true">â—‹</span>
-            <span class="live-value" id="weather">--Â°c</span>
+            <span class="weather-icon" id="weather-icon" aria-hidden="true">○</span>
+            <span class="live-value" id="weather">--°c</span>
           </div>
           <span class="live-divider" aria-hidden="true"></span>
           <time class="live-value" id="clock">--:--</time>
@@ -50,7 +51,7 @@
         <div class="lower">
           <div class="bio">
             <img class="pfp" src="pfp.svg" alt="oftenhider profile picture" width="250" height="250" />
-            <p class="about">hi, i'm oftenhider, a person from czÄ™stochowa, poland. i don't have anything to show off (for now) so go follow me on social media</p>
+            <p class="about">hi, i'm oftenhider, a person from częstochowa, poland. i don't have anything to show off (for now) so go follow me on social media</p>
           </div>
           <nav class="links" aria-label="social links">
             <a class="icon-link" data-name="twitter" href="https://x.com/oftenhider" target="_blank" rel="me noreferrer" aria-label="twitter: @oftenhider"><img src="x.svg" alt="" /></a>
@@ -68,21 +69,21 @@
       const weather = document.getElementById('weather');
       const weatherIcon = document.getElementById('weather-icon');
       const weatherLabels = { 0: 'clear', 1: 'mostly clear', 2: 'partly cloudy', 3: 'overcast', 45: 'foggy', 48: 'foggy', 51: 'drizzle', 53: 'drizzle', 55: 'drizzle', 61: 'rain', 63: 'rain', 65: 'heavy rain', 71: 'snow', 73: 'snow', 75: 'heavy snow', 80: 'showers', 81: 'showers', 82: 'heavy showers', 95: 'thunderstorm' };
-      const weatherIcons = { 0: 'â€', 1: 'â€', 2: 'â›…', 3: 'â', 45: 'â‰‹', 48: 'â‰‹', 51: 'â‚', 53: 'â‚', 55: 'â‚', 61: 'â‚', 63: 'â‚', 65: 'â‚', 71: 'âť„', 73: 'âť„', 75: 'âť„', 80: 'â‚', 81: 'â‚', 82: 'â‚', 95: 'âšˇ' };
+      const weatherIcons = { 0: '☀', 1: '☀', 2: '⛅', 3: '☁', 45: '≋', 48: '≋', 51: '☂', 53: '☂', 55: '☂', 61: '☂', 63: '☂', 65: '☂', 71: '❄', 73: '❄', 75: '❄', 80: '☂', 81: '☂', 82: '☂', 95: '⚡' };
       const updateClock = () => { clock.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date()); };
       updateClock();
       window.setInterval(updateClock, 1000);
       const loadWeather = async () => {
-        weather.textContent = '--Â°c';
+        weather.textContent = '--°c';
         try {
           const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=50.8083&longitude=19.1272&current=temperature_2m,weather_code');
           if (!response.ok) throw new Error('weather request failed');
           const data = await response.json();
           const current = data.current;
-          weatherIcon.textContent = weatherIcons[current.weather_code] || 'â—‹';
+          weatherIcon.textContent = weatherIcons[current.weather_code] || '○';
           weatherIcon.title = weatherLabels[current.weather_code] || 'weather';
-          weather.textContent = Math.round(current.temperature_2m) + 'Â°c';
-        } catch { weather.textContent = 'â€”'; }
+          weather.textContent = Math.round(current.temperature_2m) + '°c';
+        } catch { weather.textContent = '—'; }
       };
       loadWeather();
     </script>

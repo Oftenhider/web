@@ -31,4 +31,3 @@
         .links { width: min(100%, 360px); }
       }
       @media (prefers-reduced-motion: reduce) { *, *::after { transition: none !important; } }
-
