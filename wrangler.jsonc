@@ -13,6 +13,10 @@
     {
       "pattern": "oftenhider.eu",
       "custom_domain": true
+    },
+    {
+      "pattern": "www.oftenhider.eu",
+      "custom_domain": true
     }
   ],
   "assets": {
